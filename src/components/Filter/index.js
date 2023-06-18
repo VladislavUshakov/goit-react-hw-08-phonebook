@@ -1,2 +1,2 @@
 export * from './Filter';
-export * from './Filter.stylex';
+export * from './Filter.styles';

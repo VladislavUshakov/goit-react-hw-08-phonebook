@@ -1,5 +1,5 @@
 import { Title } from 'components/ContactList';
-import { FilterSection } from './Filter.stylex';
+import { FilterSection } from './Filter.styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilter } from 'redux/filter/filterSelectors';
 import { setFilter } from 'redux/filter/filterSlice';

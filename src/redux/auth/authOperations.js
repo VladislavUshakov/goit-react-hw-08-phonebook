@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
@@ -19,6 +20,7 @@ export const register = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (e) {
+      Notify.failure('Incorrect data');
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -30,6 +32,7 @@ export const logIn = createAsyncThunk('auth/login', async (user, thunkAPI) => {
     setAuthHeader(response.data.token);
     return response.data;
   } catch (e) {
+    Notify.failure('Incorrect data');
     return thunkAPI.rejectWithValue(e.message);
   }
 });
@@ -39,6 +42,7 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await axios.post('/users/logout');
     clearAuthHeader();
   } catch (e) {
+    Notify.failure('Incorrect data');
     return thunkAPI.rejectWithValue(e.message);
   }
 });
@@ -57,6 +61,7 @@ export const refreshUser = createAsyncThunk(
       const response = await axios('/users/current');
       return response.data;
     } catch (e) {
+      Notify.failure('Incorrect data');
       return thunkAPI.rejectWithValue(e.message);
     }
   }
